@@ -15,7 +15,9 @@ class Game
     end
 
     @completed = true
-    puts "#{@current_player.name} wins with a score of #{@current_player.lives}/3" 
+    puts "#{@current_player.name} wins with a score of #{@current_player.lives}/3"
+    puts "---- GAME OVER ----"
+    puts "Goodbye!" 
   end
 
   def turn
@@ -23,21 +25,23 @@ class Game
     question = Question.new
     puts question.display_question(@current_player.name)
 
-    guess = gets.chomp
+    guess = gets.chomp.to_i
 
     if question.correct?(guess)
       puts "#{@current_player.name}: YES! You are correct"
     elsif
-      puts "#{@current_player.name}: Seriously? No!"
       @current_player.lose_a_life
+      puts "#{@current_player.name}: Seriously? No!"
     end
 
-    
+    print "#{@current_player.name}: #{@current_player.lives}/3 vs "
 
     @players.rotate!
+    @current_player = @players[0]
+
+    puts "#{@current_player.name}: #{@current_player.lives}/3"
   end
 
 end
 
-x = Game.new
-x.start_game
+

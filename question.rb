@@ -11,14 +11,7 @@ class Question
   end
 
   def correct?(guess)
-    answer_string = @answer.to_s
-    guess == answer_string ? true : false
+    guess == @answer ? true : false
   end
 
 end
-
-# x = Question.new
-
-# puts x.num1
-# puts x.num2
-# puts x.answer
